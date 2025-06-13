@@ -5,7 +5,7 @@ import { createContext, useContext, useReducer, useEffect, type ReactNode } from
 import { db } from "../firebase"
 import { useAuth } from "./AuthContext"
 import { collection, addDoc, updateDoc, deleteDoc, doc, query, where, orderBy, onSnapshot } from "firebase/firestore"
-import type { Expense, Income, Bill, Budget, ExpenseContextType } from ".."
+import type { Expense, Income, Bill, Budget, ExpenseContextType } from "../types"; // Corrected import path
 
 const ExpenseContext = createContext<ExpenseContextType | undefined>(undefined)
 

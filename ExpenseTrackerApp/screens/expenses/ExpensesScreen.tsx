@@ -1,3 +1,5 @@
+// screens/expenses/ExpensesScreen.tsx
+
 "use client"
 
 import type React from "react"
@@ -5,34 +7,37 @@ import { useState } from "react"
 import { View, FlatList, StyleSheet } from "react-native"
 import { FAB, Searchbar } from "react-native-paper"
 import { useExpense } from "../../contexts/ExpenseContext"
-import ExpenseCard from "../../components/common/ExpenseCard"
+import ExpenseCard from "../../components/common/ExpenseCard" // Adjust the path if necessary
 import type { StackNavigationProp } from "@react-navigation/stack"
-import type { Expense } from "../.."
+import type { Expense } from "../../types"; // Updated import path
 
 type ExpenseStackParamList = {
-  ExpensesList: undefined
-  AddExpense: { expense?: Expense }
+  ExpensesList: undefined;
+  AddExpense: { expense?: Expense };
 }
 
 type ExpensesScreenNavigationProp = StackNavigationProp<ExpenseStackParamList, "ExpensesList">
 
 interface ExpensesScreenProps {
-  navigation: ExpensesScreenNavigationProp
+  navigation: ExpensesScreenNavigationProp;
 }
 
 const ExpensesScreen: React.FC<ExpensesScreenProps> = ({ navigation }) => {
-  const { expenses } = useExpense()
-  const [searchQuery, setSearchQuery] = useState<string>("")
+  const { expenses } = useExpense();
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const filteredExpenses = expenses.filter(
     (expense: Expense) =>
       expense.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       expense.category.toLowerCase().includes(searchQuery.toLowerCase()),
-  )
+  );
 
   const renderExpense = ({ item }: { item: Expense }) => (
-    <ExpenseCard expense={item} onPress={() => navigation.navigate("AddExpense", { expense: item })} />
-  )
+    <ExpenseCard 
+      expense={item} 
+      onPress={() => navigation.navigate("AddExpense", { expense: item })} 
+    />
+  );
 
   return (
     <View style={styles.container}>
@@ -50,9 +55,13 @@ const ExpensesScreen: React.FC<ExpensesScreenProps> = ({ navigation }) => {
         contentContainerStyle={styles.list}
       />
 
-      <FAB style={styles.fab} icon="plus" onPress={() => navigation.navigate("AddExpense", {})} />
+      <FAB 
+        style={styles.fab} 
+        icon="plus" 
+        onPress={() => navigation.navigate("AddExpense", {})} 
+      />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -73,6 +82,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: "#3498DB",
   },
-})
+});
 
-export default ExpensesScreen
+export default ExpensesScreen;

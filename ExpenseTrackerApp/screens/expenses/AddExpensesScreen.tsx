@@ -8,19 +8,28 @@ import DateTimePicker from "@react-native-community/datetimepicker"
 import { useExpense } from "../../contexts/ExpenseContext"
 import type { StackNavigationProp } from "@react-navigation/stack"
 import type { RouteProp } from "@react-navigation/native"
-import type { Expense } from "../.."
+
+// Define the Expense type in this file or import it from your types file
+export type Expense = {
+  id?: string; // Optional for new expenses
+  amount: number;
+  description: string;
+  category: string;
+  date: string; // ISO string format
+  notes?: string; // Optional
+};
 
 type ExpenseStackParamList = {
-  ExpensesList: undefined
-  AddExpense: { expense?: Expense }
-}
+  ExpensesList: undefined;
+  AddExpense: { expense?: Expense };
+};
 
-type AddExpenseScreenNavigationProp = StackNavigationProp<ExpenseStackParamList, "AddExpense">
-type AddExpenseScreenRouteProp = RouteProp<ExpenseStackParamList, "AddExpense">
+type AddExpenseScreenNavigationProp = StackNavigationProp<ExpenseStackParamList, "AddExpense">;
+type AddExpenseScreenRouteProp = RouteProp<ExpenseStackParamList, "AddExpense">;
 
 interface AddExpenseScreenProps {
-  navigation: AddExpenseScreenNavigationProp
-  route: AddExpenseScreenRouteProp
+  navigation: AddExpenseScreenNavigationProp;
+  route: AddExpenseScreenRouteProp;
 }
 
 const categories = [
@@ -33,25 +42,25 @@ const categories = [
   "Education",
   "Travel",
   "Other",
-]
+];
 
 const AddExpenseScreen: React.FC<AddExpenseScreenProps> = ({ navigation, route }) => {
-  const { addExpense, updateExpense } = useExpense()
-  const editingExpense = route.params?.expense
+  const { addExpense, updateExpense } = useExpense();
+  const editingExpense = route.params?.expense;
 
-  const [amount, setAmount] = useState<string>(editingExpense?.amount?.toString() || "")
-  const [description, setDescription] = useState<string>(editingExpense?.description || "")
-  const [category, setCategory] = useState<string>(editingExpense?.category || categories[0])
-  const [date, setDate] = useState<Date>(editingExpense?.date ? new Date(editingExpense.date) : new Date())
-  const [notes, setNotes] = useState<string>(editingExpense?.notes || "")
-  const [showDatePicker, setShowDatePicker] = useState<boolean>(false)
-  const [showCategoryMenu, setShowCategoryMenu] = useState<boolean>(false)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [amount, setAmount] = useState<string>(editingExpense?.amount?.toString() || "");
+  const [description, setDescription] = useState<string>(editingExpense?.description || "");
+  const [category, setCategory] = useState<string>(editingExpense?.category || categories[0]);
+  const [date, setDate] = useState<Date>(editingExpense?.date ? new Date(editingExpense.date) : new Date());
+  const [notes, setNotes] = useState<string>(editingExpense?.notes || "");
+  const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
+  const [showCategoryMenu, setShowCategoryMenu] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (): Promise<void> => {
     if (!amount || !description) {
-      Alert.alert("Error", "Please fill in amount and description")
-      return
+      Alert.alert("Error", "Please fill in amount and description");
+      return;
     }
 
     const expenseData = {
@@ -60,31 +69,31 @@ const AddExpenseScreen: React.FC<AddExpenseScreenProps> = ({ navigation, route }
       category,
       date: date.toISOString(),
       notes,
-    }
+    };
 
     try {
-      setLoading(true)
+      setLoading(true);
       if (editingExpense) {
-        await updateExpense(editingExpense.id, expenseData)
-        Alert.alert("Success", "Expense updated successfully")
+        await updateExpense(editingExpense.id, expenseData);
+        Alert.alert("Success", "Expense updated successfully");
       } else {
-        await addExpense(expenseData)
-        Alert.alert("Success", "Expense added successfully")
+        await addExpense(expenseData);
+        Alert.alert("Success", "Expense added successfully");
       }
-      navigation.goBack()
+      navigation.goBack();
     } catch (error) {
-      Alert.alert("Error", "Failed to save expense")
+      Alert.alert("Error", "Failed to save expense");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const onDateChange = (event: any, selectedDate?: Date): void => {
-    setShowDatePicker(false)
+    setShowDatePicker(false);
     if (selectedDate) {
-      setDate(selectedDate)
+      setDate(selectedDate);
     }
-  }
+  };
 
   return (
     <PaperProvider>
@@ -130,8 +139,8 @@ const AddExpenseScreen: React.FC<AddExpenseScreenProps> = ({ navigation, route }
                 <Menu.Item
                   key={cat}
                   onPress={() => {
-                    setCategory(cat)
-                    setShowCategoryMenu(false)
+                    setCategory(cat);
+                    setShowCategoryMenu(false);
                   }}
                   title={cat}
                 />
@@ -178,8 +187,8 @@ const AddExpenseScreen: React.FC<AddExpenseScreenProps> = ({ navigation, route }
         </Card>
       </ScrollView>
     </PaperProvider>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -210,6 +219,6 @@ const styles = StyleSheet.create({
   cancelButton: {
     paddingVertical: 8,
   },
-})
+});
 
-export default AddExpenseScreen
+export default AddExpenseScreen;
