@@ -44,9 +44,11 @@ const categories = [
   "Other",
 ];
 
+console.log("AddExpenseScreen rendered");
+
 const AddExpenseScreen: React.FC<AddExpenseScreenProps> = ({ navigation, route }) => {
   const { addExpense, updateExpense } = useExpense();
-  const editingExpense = route.params?.expense;
+  const editingExpense = route.params?.expense; // This may be undefined
 
   const [amount, setAmount] = useState<string>(editingExpense?.amount?.toString() || "");
   const [description, setDescription] = useState<string>(editingExpense?.description || "");
@@ -73,7 +75,7 @@ const AddExpenseScreen: React.FC<AddExpenseScreenProps> = ({ navigation, route }
 
     try {
       setLoading(true);
-      if (editingExpense) {
+      if (editingExpense && editingExpense.id) {
         await updateExpense(editingExpense.id, expenseData);
         Alert.alert("Success", "Expense updated successfully");
       } else {
@@ -87,6 +89,8 @@ const AddExpenseScreen: React.FC<AddExpenseScreenProps> = ({ navigation, route }
       setLoading(false);
     }
   };
+
+ 
 
   const onDateChange = (event: any, selectedDate?: Date): void => {
     setShowDatePicker(false);

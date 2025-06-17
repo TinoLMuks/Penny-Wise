@@ -9,7 +9,7 @@ import BillCard from "../../components/common/BillCard"
 import { updateDoc, doc } from "firebase/firestore"
 import { db } from "../../firebase"
 import type { StackNavigationProp } from "@react-navigation/stack"
-import type { Bill } from "../.."
+import type { Bill } from "../../types"
 
 type BillsStackParamList = {
   BillsList: undefined

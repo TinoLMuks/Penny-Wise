@@ -9,7 +9,7 @@ import { useExpense } from "../../contexts/ExpenseContext"
 import { formatCurrency, calculateTotal } from "../../utils/currencyUtils"
 import { getMonthStart, getMonthEnd } from "../../utils/dateUtils"
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
-import type { Expense, Income, Bill } from "../.."
+import type { Expense, Income, Bill } from "../../types"
 
 type MainTabParamList = {
   Dashboard: undefined

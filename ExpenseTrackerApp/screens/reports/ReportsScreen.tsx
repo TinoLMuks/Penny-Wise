@@ -8,7 +8,7 @@ import { LineChart, BarChart } from "react-native-chart-kit"
 import { useExpense } from "../../contexts/ExpenseContext"
 import { formatCurrency, calculateTotal } from "../../utils/currencyUtils"
 import { getMonthStart, getMonthEnd } from "../../utils/dateUtils"
-import type { Expense, Income } from "../.."
+import type { Expense, Income } from "../../types"
 
 const screenWidth = Dimensions.get("window").width
 

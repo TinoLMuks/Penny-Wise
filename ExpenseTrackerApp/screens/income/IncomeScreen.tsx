@@ -8,7 +8,7 @@ import { useExpense } from "../../contexts/ExpenseContext"
 import { formatCurrency } from "../../utils/currencyUtils"
 import { formatDate } from "../../utils/dateUtils"
 import type { StackNavigationProp } from "@react-navigation/stack"
-import type { Income } from "../.."
+import type { Income } from "../../types"
 
 type IncomeStackParamList = {
   IncomeList: undefined

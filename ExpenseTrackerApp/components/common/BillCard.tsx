@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native"
 import { Card, Button } from "react-native-paper"
 import { formatCurrency } from "../../utils/currencyUtils"
 import { formatDate, daysBetween } from "../../utils/dateUtils"
-import type { Bill } from "../.."
+import type { Bill } from "../../types"
 
 interface BillCardProps {
   bill: Bill

@@ -9,7 +9,7 @@ import { useExpense } from "../../contexts/ExpenseContext"
 import { scheduleBillReminder } from "../../utils/notificationUtils"
 import type { StackNavigationProp } from "@react-navigation/stack"
 import type { RouteProp } from "@react-navigation/native"
-import type { Bill } from "../.."
+import type { Bill } from "../../types"
 
 type BillsStackParamList = {
   BillsList: undefined

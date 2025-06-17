@@ -1,5 +1,6 @@
 import { registerRootComponent } from 'expo';
 import App from '../App';
+import { User as FirebaseUser } from "firebase/auth";
 
 registerRootComponent(App);
 
@@ -60,7 +61,7 @@ export interface Budget {
 
 // Auth context interface definition
 export interface AuthContextType {
-  currentUser: User | null; // Current authenticated user
+  currentUser: FirebaseUser | null; // Current authenticated user
   signup: (email: string, password: string) => Promise<any>; // User signup method
   login: (email: string, password: string) => Promise<any>; // User login method
   logout: () => Promise<void>; // User logout method
