@@ -8,7 +8,7 @@ import DateTimePicker from "@react-native-community/datetimepicker"
 import { useExpense } from "../../contexts/ExpenseContext"
 import type { StackNavigationProp } from "@react-navigation/stack"
 import type { RouteProp } from "@react-navigation/native"
-import type { Income } from "../.."
+import type { Income } from "../../types"
 
 type IncomeStackParamList = {
   IncomeList: undefined

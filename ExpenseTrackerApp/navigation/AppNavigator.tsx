@@ -15,7 +15,7 @@ import ForgotPasswordScreen from "../screens/auth/ForgotPasswordScreen"
 // Main Screens
 import DashboardScreen from "../screens/dashboard/DashboardScreen"
 import ExpensesScreen from "../screens/expenses/ExpensesScreen"
-import AddExpenseScreen from "../screens/expenses/AddExpenseScreen" // Fixed import name
+import AddExpenseScreen from "../screens/expenses/AddExpensesScreen" 
 import IncomeScreen from "../screens/income/IncomeScreen"
 import AddIncomeScreen from "../screens/income/AddIncomeScreen"
 import BillsScreen from "../screens/bills/BillsScreen"
@@ -68,13 +68,13 @@ const AuthStack: React.FC = () => (
     <Stack.Screen name="Login" component={LoginScreen} />
     <Stack.Screen name="Register" component={RegisterScreen} />
     <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-  </Stack.Navigator>
+  </Stack.Navigator> 
 );
 
 const ExpenseStack: React.FC = () => (
   <Stack.Navigator>
     <Stack.Screen name="ExpensesList" component={ExpensesScreen} options={{ title: "Expenses" }} />
-    <Stack.Screen name="AddExpense" component={AddExpenseScreen} options={{ title: "Add Expense" }} />
+    <Stack.Screen name="AddExpense" component={AddExpensesScreen} options={{ title: "Add Expense" }} />
   </Stack.Navigator>
 );
 
