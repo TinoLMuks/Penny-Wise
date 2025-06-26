@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { View, Text, StyleSheet, ScrollView, Alert, Platform } from "react-native"
-import { TextInput, Button, Card, Menu, Provider as PaperProvider } from "react-native-paper"
-import DateTimePicker from "@react-native-community/datetimepicker"
-import { useExpense } from "../../contexts/ExpenseContext"
-import type { StackNavigationProp } from "@react-navigation/stack"
-import type { RouteProp } from "@react-navigation/native"
+import type React from "react";
+import { useState, useEffect } from "react";
+import { View, Text, StyleSheet, ScrollView, Alert, Platform } from "react-native";
+import { TextInput, Button, Card, Menu, Provider as PaperProvider } from "react-native-paper";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { useExpense } from "../../contexts/ExpenseContext";
+import type { StackNavigationProp } from "@react-navigation/stack";
+import type { RouteProp } from "@react-navigation/native";
 
-// Define the Expense type in this file or import it from your types file
+// Define the Expense type
 export type Expense = {
   id?: string; // Optional for new expenses
   amount: number;
   description: string;
   category: string;
   date: string; // ISO string format
-  notes?: string; // Optional
+
 };
 
 type ExpenseStackParamList = {
@@ -48,7 +48,7 @@ console.log("AddExpenseScreen rendered");
 
 const AddExpenseScreen: React.FC<AddExpenseScreenProps> = ({ navigation, route }) => {
   const { addExpense, updateExpense } = useExpense();
-  const editingExpense = route.params?.expense; // This may be undefined
+  const editingExpense = route.params?.expense;
 
   const [amount, setAmount] = useState<string>(editingExpense?.amount?.toString() || "");
   const [description, setDescription] = useState<string>(editingExpense?.description || "");
@@ -90,14 +90,18 @@ const AddExpenseScreen: React.FC<AddExpenseScreenProps> = ({ navigation, route }
     }
   };
 
- 
-
   const onDateChange = (event: any, selectedDate?: Date): void => {
     setShowDatePicker(false);
     if (selectedDate) {
       setDate(selectedDate);
     }
   };
+
+  useEffect(() => {
+    if (Platform.OS === 'web') {
+      // Handle web-specific logic if needed
+    }
+  }, []);
 
   return (
     <PaperProvider>
